@@ -1,0 +1,61 @@
+-- Bootstrap Paq when needed
+local fn = vim.fn
+local install_path = fn.stdpath("data") .. "/site/pack/paqs/start/paq-nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+  fn.system({ "git", "clone", "--depth=1", "https://github.com/savq/paq-nvim.git", install_path })
+end
+
+-- Plugins
+require("paq")({
+  "savq/paq-nvim", -- The plugin manager himself
+  { "sainnhe/gruvbox-material" }, -- Color Theme
+  { "tpope/vim-fugitive" }, -- Best GIT plugin
+  { "lewis6991/gitsigns.nvim" }, -- GIT signs
+  { "tpope/vim-sleuth" }, -- Automatic learn the indent
+  { "mbbill/undotree" }, -- Undo tree
+  { "lukas-reineke/indent-blankline.nvim" }, -- indent scope
+
+  -- Treesitter stuff
+  { "nvim-treesitter/nvim-treesitter", config = ":TSUpdate" }, -- Treesitter
+  { "nvim-treesitter/nvim-treesitter-textobjects" }, -- Treesitter text objects
+  { "nvim-treesitter/nvim-treesitter-context" }, -- Shows the current indent scope context
+  -----------
+
+  -- Mini stuff
+  { "echasnovski/mini.files" }, -- File explorer
+  { "echasnovski/mini.comment" }, -- Comment out stuff
+  {
+    "echasnovski/mini.icons", -- Add NERD Icons
+    config = function()
+      require("mini.icons").setup()
+    end,
+  },
+  { "echasnovski/mini.notify" }, -- Alternative to vim.notify
+  ---------
+
+  "Rics-Dev/project-explorer.nvim", -- Project explorer -> I think i should create one on my own
+
+  { "saghen/blink.cmp", version = "v1.*" }, -- Blink completions
+
+  "ibhagwan/fzf-lua", -- FZF stuff
+
+  "nvim-lualine/lualine.nvim",
+  {
+    "norcalli/nvim-colorizer.lua", -- Color text hex
+    config = function()
+      require("colorizer").setup()
+    end,
+  },
+
+  { "stevearc/conform.nvim" },
+
+  "folke/which-key.nvim", -- Just which key
+
+  --- New stuff to try
+  { "iamcco/markdown-preview.nvim" }, -- Markdown preview
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+  }, -- Render markdown
+
+  --- LSP stuff
+})
