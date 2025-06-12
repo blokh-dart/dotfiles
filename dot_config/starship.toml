@@ -1,0 +1,135 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+
+format = """
+$docker_context\
+$os\
+$directory\
+$git_branch\
+[](fg:bg_dark bg:transparent)\
+\
+$fill\
+$status\
+$git_metrics\
+$git_state\
+[](fg:bg_normal bg:transparent)\
+$golang\
+$gradle\
+$python\
+[ ](bg:bg_normal)\
+$line_break\
+$character"""
+
+palette = 'gruvbox_dark'
+
+
+[palettes.gruvbox_dark]
+color_fg0 = '#e2cca9'
+color_bg1 = '#282828'
+color_bg3 = '#3c3836'
+color_blue = '#80aa9e'
+color_aqua = '#8bba7f'
+color_green = '#b0b846'
+color_orange = '#f28534'
+color_purple = '#d3869b'
+color_red = '#db4740'
+color_yellow = '#e9b143'
+color_bg = "#4b0055"
+bg_dark = "#4b0055"
+bg_normal = "#880e9a"
+fg_dim = "#dc40ff"
+fg_icon = "#e96dff"
+
+
+[fill]
+symbol = " "
+
+[os]
+style = "bg:#fdf3ff fg:black"
+format = '[ $symbol ]($style)[](bg:#fdf3ff fg:bg_normal)'
+disabled = false
+
+[directory]
+format = '[$path]($style)[( $read_only )]($read_only_style)[](fg:bg_normal bg:bg_dark)'
+style = "bg:bg_normal fg:fg_icon"
+read_only_style = "bg:bg_normal fg:fg_icon"
+fish_style_pwd_dir_length = 1
+read_only =""
+truncation_length = 8
+truncation_symbol = "…/"
+truncate_to_repo = false
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Dev" = "󰲋 "
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = '🔖 '
+
+[git_branch]
+symbol = ""
+style = "bold bg:bg_dark fg:fg_dim"
+format = '[ $symbol](bg:bg_dark fg:#D1005B)[ $branch ]($style)'
+
+[git_metrics]
+added_style = "bg:color_bg fg:#00FF00"
+deleted_style = "bg:color_bg fg:#FF0000"
+format = '([+$added ]($added_style))([-$deleted ]($deleted_style))'
+disabled = false
+[git_state]
+
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = '[🍒 PICKING](bg:#43001D fg:bold red)'
+rebase = '[ REBASING](bg:#43001D fg:bold green)'
+merge = '[ MERGING](bg:#43001D fg:bold yellow)'
+bisect = '[🔍 BISECTING](bg:#43001D fg:bold blue)'
+am = '[AM](bg:#43001D fg:bold green)'
+am_or_rebase = '[AM/REBASE](bg:#43001D fg:bold green)'
+revert = '[󰕍 REVERTING](bg:#43001D fg:bold red)'
+
+[python]
+symbol = ""
+style = "bg:bg_normal fg:fg_dim"
+format = '[(\($virtualenv\))]($style)[$symbol](bg:bg_normal fg:fg_icon)[ ($version)]($style)'
+
+[golang]
+symbol = ""
+style = "bg:bg_normal fg:fg_dim"
+format = '[$symbol](bg:bg_normal fg:fg_icon)[ ($version)($mod_version)]($style)'
+
+[gradle]
+symbol = ""
+style = "bg:bg_normal fg:fg_dim"
+format = '[$symbol](bg:bg_normal fg:fg_icon)[ ($version)]($style)'
+
+[docker_context]
+symbol = ""
+style = "bg:color_bg3"
+format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
+
+[line_break]
+disabled = false
+
+[status]
+disabled = false
+symbol = '✘ '
+style = "fg:#fdf3ff bold"
+
+[character]
+disabled = false
+success_symbol = '[](bold fg:#dc40ff)'
+error_symbol = '[](bold fg:color_red)'
+vimcmd_symbol = '[\[N\]](bold bg:color_fg0 fg:color_bg1)[](bold fg:color_fg0)'
+vimcmd_replace_one_symbol = '[R ](bold fg:color_purple)'
+vimcmd_replace_symbol = '[R ](bold fg:color_purple)'
+vimcmd_visual_symbol = '[\[V\]](bold bg:color_red fg:color_bg1)[](bold fg:color_red)'
+
+
+[os.symbols]
+Windows = "󰍲"
+Macos = ""
+Linux = ""
